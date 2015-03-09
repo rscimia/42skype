@@ -1,7 +1,7 @@
 /*jslint node: true */
 "use strict";
 
-var spark =require('spark');
+var spark = require('spark');
 var http = require('http');
 
 spark.on('login', function() {
@@ -18,13 +18,17 @@ spark.on('login', function() {
 		}
 	};
 
-	http.get(options, function(res) {
+	var req = http.get(options, function(res) {
 		console.log('STATUS: ' + res.statusCode);
 		console.log('HEADERS: ' + JSON.stringify(res.headers));
 		res.setEncoding('utf8');
 		res.on('data', function (chunk) {
 			console.log('BODY: ' + chunk);
 		});
+	});
+
+	req.on('error', function(e) {
+	  	console.log('problem with request: ' + e.message);
 	});
 
   	devicesPr.then(
