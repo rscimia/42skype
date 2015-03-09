@@ -10,23 +10,10 @@ spark.on('login', function() {
 
   	var devicesPr = spark.listDevices();
 
-  	var options = {
-		hostname: 'mystatus.skype.com',
-		port: 80,
-		path: 'savnika.num'
-	};
-
-	var req = http.get(options, function(res) {
-		console.log('STATUS: ' + res.statusCode);
-		console.log('HEADERS: ' + JSON.stringify(res.headers));
-		res.setEncoding('utf8');
-		res.on('data', function (chunk) {
-			console.log('BODY: ' + chunk);
-		});
-	});
-
-	req.on('error', function(e) {
-	  	console.log('problem with request: ' + e.message);
+	http.get("http://mystatus.skype.com/savnika.num", function(res) {
+	  	console.log("Got response: " + res.statusCode);
+	}).on('error', function(e) {
+	  	console.log("Got error: " + e.message);
 	});
 
   	devicesPr.then(
