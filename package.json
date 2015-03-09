@@ -1,0 +1,27 @@
+{
+  "name": "42skype",
+  "version": "1.0.0",
+  "description": "status skype alert",
+  "main": "index.js",
+  "scripts": {
+    "test": "test_skype"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rscimia/42skype.git"
+  },
+  "keywords": [
+    "skype",
+    "spark"
+  ],
+  "author": "rscimia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rscimia/42skype/issues"
+  },
+  "homepage": "https://github.com/rscimia/42skype",
+  "dependencies": {
+    "express": "^4.12.2",
+    "spark": "^0.4.0"
+  }
+}
