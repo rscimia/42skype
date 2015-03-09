@@ -2,21 +2,33 @@
 "use strict";
 
 var spark =require('spark');
-var http = require('http');
 
-var http = require('http');
 
-var server = http.createServer(function(req, res) {
+spark.on('login', function() {
+  	// If login is successful we get and accessToken,
+  	// we'll use that to call Spark API ListDevices
 
-	spark.on('login', function() {
-	  	// If login is successful we get and accessToken,
-	  	// we'll use that to call Spark API ListDevices
-	  	var devicesPr = spark.listDevices();
+  	var devicesPr = spark.listDevices();
 
-	  	res.writeHead(200);
-  		res.end('Vous êtes bien logué');
+  	var options = {
+		hostname: 'http://mystatus.skype.com/savnika.xml',
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Length': postData.length
+		}
+	};
 
-	  	devicesPr.then(
+	http.get(options, function(res) {
+		console.log('STATUS: ' + res.statusCode);
+		console.log('HEADERS: ' + JSON.stringify(res.headers));
+		res.setEncoding('utf8');
+		res.on('data', function (chunk) {
+			console.log('BODY: ' + chunk);
+		});
+	});
+
+  	devicesPr.then(
 	    // We get an array with devices back and we list them
 	    function(devices){
 	    	console.log('API call List Devices: ', devices);
@@ -43,13 +55,10 @@ var server = http.createServer(function(req, res) {
 	    },
 	    function(err) {
 	    	console.log('API call failed: ', err);
-	    });
-	});
-
-	// Login as usual
-	spark.login({ username: 'romain@42factory.com', password: '42spark' });
-  	
+	    }
+	);
 });
 
-server.listen(8080);
+// Login as usual
+spark.login({ username: 'romain@42factory.com', password: '42spark' });
 
