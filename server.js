@@ -2,7 +2,7 @@
 "use strict";
 
 var spark =require('spark');
-
+var http = require('http');
 
 spark.on('login', function() {
   	// If login is successful we get and accessToken,
@@ -14,7 +14,7 @@ spark.on('login', function() {
 		hostname: 'http://mystatus.skype.com/savnika.xml',
 		method: 'GET',
 		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Type': 'application/x-www-form-urlencoded'
 		}
 	};
 
