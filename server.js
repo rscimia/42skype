@@ -4,7 +4,6 @@
 var spark = require('spark');
 var http = require('http');
 
-
 spark.on('login', function() {
   	// If login is successful we get and accessToken,
   	// we'll use that to call Spark API ListDevices
