@@ -12,7 +12,8 @@ spark.on('login', function() {
   	var devicesPr = spark.listDevices();
 
   	var options = {
-		hostname: 'http://mystatus.skype.com/savnika.xml',
+		hostname: 'mystatus.skype.com',
+		path: 'savnika.xml',
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
