@@ -15,7 +15,6 @@ spark.on('login', function() {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': postData.length
 		}
 	};
 
