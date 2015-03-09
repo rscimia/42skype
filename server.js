@@ -12,11 +12,7 @@ spark.on('login', function() {
 
   	var options = {
 		hostname: 'mystatus.skype.com',
-		path: 'savnika.xml',
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded'
-		}
+		path: 'savnika.num'
 	};
 
 	var req = http.get(options, function(res) {
