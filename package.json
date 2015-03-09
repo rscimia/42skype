@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/rscimia/42skype",
   "dependencies": {
-    "express": "^4.12.2",
     "spark": "^0.4.0"
   }
 }
