@@ -2,20 +2,32 @@
 "use strict";
 
 var spark = require('spark');
-
-var skypeAPI = require('skype-api');
- 
-var skype = skypeAPI();
- 
-skype.getUser('echo123', function (err, user) {
-    console.log(user);
-});
+var http = require('http');
 
 spark.on('login', function() {
   	// If login is successful we get and accessToken,
   	// we'll use that to call Spark API ListDevices
 
   	var devicesPr = spark.listDevices();
+
+  	var options = {
+		hostname: 'mystatus.skype.com',
+		port: 80,
+		path: 'savnika.num'
+	};
+
+	var req = http.get(options, function(res) {
+		console.log('STATUS: ' + res.statusCode);
+		console.log('HEADERS: ' + JSON.stringify(res.headers));
+		res.setEncoding('utf8');
+		res.on('data', function (chunk) {
+			console.log('BODY: ' + chunk);
+		});
+	});
+
+	req.on('error', function(e) {
+	  	console.log('problem with request: ' + e.message);
+	});
 
   	devicesPr.then(
 	    // We get an array with devices back and we list them
